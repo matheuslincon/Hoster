@@ -1,10 +1,16 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Header from '../components/Header'
 
 export default function Home() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className="">
+      <Head>
+        <title>Hoster App</title>
+        <link rel='icon' href='/favicon.ico'/>
+      </Head>
+
+      <Header />
+      {/* Banner */}
+    </div>
   )
 }
