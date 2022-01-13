@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Banner from '../components/Banner'
 import Header from '../components/Header'
 import SmallCard from '../components/SmallCard';
+import MediumCard from '../components/MediumCard';
 
-export default function Home({ exploreData }) {
+export default function Home({ exploreData, cardsData }) {
   return (
     <div className="">
       <Head>
@@ -28,6 +29,19 @@ export default function Home({ exploreData }) {
             ))}
           </div>
         </section>
+
+        <section>
+          <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3">
+            {cardsData?.map(({ img, title}) => (
+              <MediumCard
+              key={img}
+              img={img}
+              title={title}
+              />
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   )
@@ -37,9 +51,15 @@ export async function getStaticProps() {
   const exploreData = await fetch('https://links.papareact.com/pyp').then(
     (res) => res.json()
   );
+
+  const cardsData = await fetch('https://links.papareact.com/zp1').then(
+    (res) => res.json()
+  );
+
   return {
     props: {
-      exploreData
+      exploreData,
+      cardsData
     }
   }
 }
