@@ -73,9 +73,14 @@ function Header() {
             <input
               type="number"
               value={guestNumber}
+              min={1}
               onChange={(e) => setGuestNumber(e.target.value)}
               className="w-12 pl-2 text-lg outline-none text-[#BAA360]"
             />
+          </div>
+          <div className="flex">
+            <button className="flex-grow text-gray-500">Cancel</button>
+            <button className="flex-grow text-[#BAA360]">Search</button>
           </div>
         </div>
       )}
