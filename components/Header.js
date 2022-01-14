@@ -5,6 +5,7 @@ import { useState } from 'react';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+import { useRouter } from 'next/router';
 
 
 function Header() {
@@ -12,6 +13,7 @@ function Header() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [guestNumber, setGuestNumber] = useState(1);
+  const router = useRouter();
 
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
@@ -31,7 +33,7 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
       {/* Left - Logo */}
-      <div className="flex relative items-center my-auto h-14 cursor-pointer">
+      <div onClick={() => router.push('/')} className="flex relative items-center my-auto h-14 cursor-pointer">
         <Image
           src={headerImg}
           layout='fill'
