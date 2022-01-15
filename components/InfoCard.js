@@ -11,7 +11,7 @@ function InfoCard({ img, title, description,location, star, price, total }) {
           alt='Image'
           layout='fill'
           objectFit='cover'
-          className="rounded-lg"
+          className="rounded-2xl"
         />
       </div>
 
