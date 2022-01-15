@@ -1,9 +1,9 @@
 import Header from "../components/Header";
-import Footer  from "../components/Footer";
+import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { format } from 'date-fns';
 
-function Search() {
+function Search({ searchResults }) {
   const router = useRouter();
   const { location, startDate, endDate, guestNumber } = router.query;
   const formattedStartDate = format(new Date(startDate), "dd MMMM yyyy");
@@ -34,3 +34,13 @@ function Search() {
 }
 
 export default Search;
+
+export async function getServerSideProps() {
+  const searchResults = await fetch('https://links.papareact.com/isz').then(res => res.json());
+
+  return {
+    props: {
+      searchResults,
+    }
+  }
+}
