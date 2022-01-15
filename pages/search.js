@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { format } from 'date-fns';
+import InfoCard from "../components/infoCard";
 
 function Search({ searchResults }) {
   const router = useRouter();
@@ -24,6 +25,21 @@ function Search({ searchResults }) {
             <p className="button">Price</p>
             <p className="button">Rooms and Beds</p>
             <p className="button">More Filters</p>
+          </div>
+
+          <div className="flex flex-col">
+            {searchResults.map(({ img, title, description,location, star, price, total }) => (
+              <InfoCard
+              key={img}
+              img={img}
+              title={title}
+              description={description}
+              location={location}
+              star={star}
+              price={price}
+              total={total}
+              />
+            ))}
           </div>
         </section>
       </main>
