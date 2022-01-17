@@ -1,8 +1,14 @@
-function Map() {
-  return (
-    <div>
+import ReactMapGL from 'react-map-gl';
 
-    </div>
+function Map() {
+
+  return (
+    <ReactMapGL
+      mapStyle='mapbox://styles/akkiscrystal/ckyhz0joh1gpk14l058neobzi'
+      mapboxApiAccessToken={process.env.mapbox_key}
+    >
+
+    </ReactMapGL>
   )
 }
 
