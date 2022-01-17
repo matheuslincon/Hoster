@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import getCenter from 'geolib/es/getCenter';
+import { LocationMarkerIcon } from '@heroicons/react/solid';
 
 function Map({ searchResults }) {
   const coordinates = searchResults.map(result => ({
@@ -25,7 +26,20 @@ function Map({ searchResults }) {
       {...viewport}
       onViewportChange={(nextViewport) => setViewport(nextViewport)}
     >
-
+      {searchResults.map(result => (
+        <div key={result.long}>
+          <Marker
+            longitude={result.long}
+            latitude={result.lat}
+            offsetLeft={-20}
+            offsetTop={-10}
+          >
+            <LocationMarkerIcon
+              className="h-7 text-[#BAA360]"
+            />
+          </Marker>
+        </div>
+      ))}
     </ReactMapGL>
   )
 }
