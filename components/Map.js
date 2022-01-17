@@ -4,6 +4,8 @@ import getCenter from 'geolib/es/getCenter';
 import { LocationMarkerIcon } from '@heroicons/react/solid';
 
 function Map({ searchResults }) {
+  const [selectedLocation, setSelectedLocation] = useState({});
+
   const coordinates = searchResults.map(result => ({
     longitude: result.long,
     latitude: result.lat,
@@ -35,9 +37,23 @@ function Map({ searchResults }) {
             offsetTop={-10}
           >
             <LocationMarkerIcon
-              className="h-7 text-[#BAA360]"
+              onClick={() => setSelectedLocation(result)}
+              className="h-7 text-[#BAA360] cursor-pointer animate-pulse"
             />
           </Marker>
+
+          {selectedLocation.long === result.long ? (
+            <Popup
+              closeOnClick={true}
+              onClose={() => setSelectedLocation({})}
+              latitude={result.lat}
+              longitude={result.long}
+            >
+              {result.title}
+            </Popup>
+          ): (
+            false
+          )}
         </div>
       ))}
     </ReactMapGL>
