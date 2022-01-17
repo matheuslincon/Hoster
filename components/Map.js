@@ -15,6 +15,7 @@ function Map() {
       mapStyle='mapbox://styles/akkiscrystal/ckyhz0joh1gpk14l058neobzi'
       mapboxApiAccessToken={process.env.mapbox_key}
       {...viewport}
+      onViewportChange={(nextViewport) => setViewport(nextViewport)}
     >
 
     </ReactMapGL>
